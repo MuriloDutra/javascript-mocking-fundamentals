@@ -20,5 +20,4 @@ test('returns winner', () => {
     [ 'Murilo Alves', 'Camila Pereira' ]
   ])
   utils.getWinner = originalGetWinner
-
 })

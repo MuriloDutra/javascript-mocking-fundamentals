@@ -2,30 +2,30 @@ const assert = require('assert')
 const thumbWar = require('../thumb-war')
 const utils = require('../utils')
 
-function fn(impl = () => {}) {
+function fn(implementation = () => {}) {
   const mockFn = (...args) => {
     mockFn.mock.calls.push(args)
-    return impl(...args)
+    return implementation(...args)
   }
   mockFn.mock = {calls: []}
-  mockFn.mockImplementation = newImpl => (impl = newImpl)
+  mockFn.mockImplementation = newImplementation => (implementation = newImplementation)
   return mockFn
 }
 
 function spyOn(obj, prop) {
   const originalValue = obj[prop]
   obj[prop] = fn()
-  obj[prop].mockRestore = () => (obj[prop] = originalValue)
+  obj[prop].mockRestore = () => (obj[prop] = originalValue)//It retrieves the original function
 }
 
 spyOn(utils, 'getWinner')
 utils.getWinner.mockImplementation((p1, p2) => p1)
 
-const winner = thumbWar('Kent C. Dodds', 'Ken Wheeler')
-assert.strictEqual(winner, 'Kent C. Dodds')
+const winner = thumbWar('Murilo Alves', 'Camila Pereira')
+assert.strictEqual(winner, 'Murilo Alves')
 assert.deepStrictEqual(utils.getWinner.mock.calls, [
-  ['Kent C. Dodds', 'Ken Wheeler'],
-  ['Kent C. Dodds', 'Ken Wheeler']
+  ['Murilo Alves', 'Camila Pereira'],
+  ['Murilo Alves', 'Camila Pereira']
 ])
 
 // cleanup
