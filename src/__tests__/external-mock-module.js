@@ -1,14 +1,14 @@
 const thumbWar = require('../thumb-war')
 const utilsMock = require('../utils')
 
-jest.mock('../utils')
+jest.mock('../utils')//In fact, it's using the mocked file. IN __mocks__/utils.js
 
 test('returns winner', () => {
-  const winner = thumbWar('Kent C. Dodds', 'Ken Wheeler')
-  expect(winner).toBe('Kent C. Dodds')
+  const winner = thumbWar('Murilo Alves', 'Camila Pereira')
+  expect(winner).toBe('Murilo Alves')
   expect(utilsMock.getWinner.mock.calls).toEqual([
-    ['Kent C. Dodds', 'Ken Wheeler'],
-    ['Kent C. Dodds', 'Ken Wheeler']
+    ['Murilo Alves', 'Camila Pereira'],
+    ['Murilo Alves', 'Camila Pereira']
   ])
 
   // cleanup

@@ -1,7 +1,7 @@
-function fn(impl = () => {}) {
+function fn(implementation = () => {}) {
   const mockFn = (...args) => {
     mockFn.mock.calls.push(args)
-    return impl(...args)
+    return implementation(...args)
   }
   mockFn.mock = {calls: []}
   return mockFn
