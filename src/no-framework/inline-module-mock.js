@@ -12,20 +12,20 @@ require.cache[utilsPath] = {
   id: utilsPath,
   filename: utilsPath,
   loaded: true,
-  exports: {
+  exports: {//Mocking getWinner function
     getWinner: fn((p1, p2) => p1)
   }
 }
 
 const assert = require('assert')
 const thumbWar = require('../thumb-war')
-const utils = require('../utils')
+const utils = require('../utils')//The mocked module is being used here
 
-const winner = thumbWar('Kent C. Dodds', 'Ken Wheeler')
-assert.strictEqual(winner, 'Kent C. Dodds')
+const winner = thumbWar('Murilo Alves', 'Camila Pereira')
+assert.strictEqual(winner, 'Murilo Alves')
 assert.deepStrictEqual(utils.getWinner.mock.calls, [
-  ['Kent C. Dodds', 'Ken Wheeler'],
-  ['Kent C. Dodds', 'Ken Wheeler']
+  ['Murilo Alves', 'Camila Pereira'],
+  ['Murilo Alves', 'Camila Pereira']
 ])
 
 // cleanup
